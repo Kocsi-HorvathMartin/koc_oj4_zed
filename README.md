@@ -1,4 +1,4 @@
-# `ros2_py_template` package
+# `koc_oj4_zed` package
 ROS 2 python package.  [![Static Badge](https://img.shields.io/badge/ROS_2-Humble-34aec5)](https://docs.ros.org/en/humble/)
 ## Packages and build
 
@@ -17,7 +17,7 @@ git clone https://github.com/sze-info/ros2_py_template
 cd ~/ros2_ws
 ```
 ``` r
-colcon build --packages-select ros2_py_template --symlink-install
+colcon build --packages-select koc_oj4_zed --symlink-install
 ```
 
 <details>

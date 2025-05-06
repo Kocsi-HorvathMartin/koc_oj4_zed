@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 from glob import glob
 import os
 
-package_name = 'ros2_py_template'
+package_name = 'koc_oj4_zed'
 
 setup(
     name=package_name,
