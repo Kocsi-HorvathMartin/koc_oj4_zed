@@ -14,6 +14,13 @@ class ZedOdomListener(Node):
             10
         )
 
+        self.create_subscription(
+            TrackingStatus,
+            '/zed/odom/status',
+            self.status_callback,
+            10
+        )
+
         self.get_logger().info('ZED Odometry Listener Node has been started.')
 
     def odom_callback(self, msg: Odometry):
@@ -21,3 +28,12 @@ class ZedOdomListener(Node):
         self.get_logger().info(
             f"Position - x: {position.x:.2f}, y: {position.y:.2f}, z: {position.z:.2f}"
         )
+
+    def status_callback(self, msg: TrackingStatus):
+        status_dict = {
+            0: "OFF",
+            1: "OK",
+            2: "SEARCHING",
+            3: "FPS_TOO_LOW"
+        }
+        self.get_logger().info(f"Tracking Status: {status_dict.get(msg.status, 'UNKNOWN')}")
