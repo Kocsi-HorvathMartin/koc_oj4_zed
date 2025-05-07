@@ -48,3 +48,20 @@ class DepthMinFilter(Node):
             self.try_process()
         except Exception as e:
             self.get_logger().error(f"Error in confidence callback: {e}")
+
+    def try_process(self):
+        if self.depth_image is None or self.conf_image is None:
+            return
+
+        confidence_mask = self.conf_image >= 50  # Confidence threshold
+
+        valid_depths = np.where(confidence_mask, self.depth_image, np.nan)
+        min_depth = np.nanmin(valid_depths)
+
+        if np.isnan(min_depth):
+            self.get_logger().warn("No valid depth values found.")
+        else:
+            self.get_logger().info(f"Minimum valid depth: {min_depth:.2f} meters")
+
+        self.depth_image = None
+        self.conf_image = None
