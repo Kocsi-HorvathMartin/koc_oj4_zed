@@ -37,3 +37,13 @@ class ZedOdomListener(Node):
             3: "FPS_TOO_LOW"
         }
         self.get_logger().info(f"Tracking Status: {status_dict.get(msg.status, 'UNKNOWN')}")
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = ZedOdomListener()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
