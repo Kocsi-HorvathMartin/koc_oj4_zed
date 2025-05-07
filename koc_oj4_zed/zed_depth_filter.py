@@ -58,10 +58,13 @@ class DepthMinFilter(Node):
         valid_depths = np.where(confidence_mask, self.depth_image, np.nan)
         min_depth = np.nanmin(valid_depths)
 
+        # Threshold for the minimum depth
+        depth_threshold = 0.5
+
         if np.isnan(min_depth):
             self.get_logger().warn("No valid depth values found.")
-        else:
-            self.get_logger().info(f"Minimum valid depth: {min_depth:.2f} meters")
+        elif min_depth < depth_threshold:
+            self.get_logger().error(f"Minimum depth {min_depth:.2f} meters is below the threshold of {depth_threshold:.2f} meters!")
 
         self.depth_image = None
         self.conf_image = None
