@@ -36,7 +36,10 @@ class ZedOdomListener(Node):
             2: "SEARCHING",
             3: "FPS_TOO_LOW"
         }
-        self.get_logger().info(f"Tracking Status: {status_dict.get(msg.status, 'UNKNOWN')}")
+
+        status_text = status_dict.get(msg.status, "UNKNOWN")
+        if msg.status != 1:
+            self.get_logger().error(f"Tracking Error! Status: {status_text}")
 
 def main(args=None):
     rclpy.init(args=args)
