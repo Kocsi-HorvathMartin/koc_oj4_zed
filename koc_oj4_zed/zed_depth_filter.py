@@ -68,3 +68,14 @@ class DepthMinFilter(Node):
 
         self.depth_image = None
         self.conf_image = None
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = DepthMinFilter()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
