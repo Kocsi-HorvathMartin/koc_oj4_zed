@@ -34,3 +34,17 @@ class DepthMinFilter(Node):
         )
 
         self.get_logger().info("DepthMinFilter node started.")
+
+    def depth_callback(self, msg):
+        try:
+            self.depth_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
+            self.try_process()
+        except Exception as e:
+            self.get_logger().error(f"Error in depth callback: {e}")
+
+    def conf_callback(self, msg):
+        try:
+            self.conf_image = self.bridge.imgmsg_to_cv2(msg, desired_encoding='passthrough')
+            self.try_process()
+        except Exception as e:
+            self.get_logger().error(f"Error in confidence callback: {e}")
