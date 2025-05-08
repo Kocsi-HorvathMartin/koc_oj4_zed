@@ -23,7 +23,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            # 'control_vehicle = ros2_py_template.control_vehicle:main',
+            'zed_depth_filter = koc_oj4_zed.zed_depth_filter:main',
+            'zed_odom = koc_oj4_zed.zed_odom:main',
         ],
     },
 )
