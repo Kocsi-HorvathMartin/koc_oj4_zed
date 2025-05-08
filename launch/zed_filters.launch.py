@@ -2,17 +2,7 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 
 def generate_launch_description():
-    return LaunchDescription([
-        # Launch the ZED Camera Node
-        Node(
-            package='zed_ros2_wrapper',  # ZED ROS 2 wrapper package
-            executable='zed_camera_node',  # ZED camera node executable
-            name='zed_camera',
-            output='screen',
-            parameters=[{'camera_resolution': 'HD720'}],  # Example parameter
-            remappings=[('/zed/zed_node/depth/depth_registered', '/my_robot/depth_image')]  # Topic remapping
-        ),
-        
+    return LaunchDescription([ 
         # Launch the ZED Depth Filter Node
         Node(
             package='koc_oj4_zed',  # Your package name
