@@ -33,7 +33,7 @@ source ~/ros2_ws/install/setup.bash
 </details>
 
 ``` r
-ros2 launch ros2_py_template launch_example1.launch.py
+ros2 launch koc_oj4_zed zed_filters.launch.py
 ```
 
 ## Graph

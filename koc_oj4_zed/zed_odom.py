@@ -1,7 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
-from zed_interfaces.msg import TrackingStatus
+from diagnostic_msgs.msg import DiagnosticStatus
 
 class ZedOdomListener(Node):
     def __init__(self):
@@ -9,14 +9,14 @@ class ZedOdomListener(Node):
 
         self.create_subscription(
             Odometry,
-            '/zed/odom',
+            '/zed/zed_node/odom',
             self.odom_callback,
             10
         )
 
         self.create_subscription(
-            TrackingStatus,
-            '/zed/odom/status',
+            DiagnosticStatus,
+            '/zed/zed_node/odom/status',
             self.status_callback,
             10
         )
@@ -29,7 +29,7 @@ class ZedOdomListener(Node):
             f"Position - x: {position.x:.2f}, y: {position.y:.2f}, z: {position.z:.2f}"
         )
 
-    def status_callback(self, msg: TrackingStatus):
+    def status_callback(self, msg: DiagnosticStatus):
         status_dict = {
             0: "OFF",
             1: "OK",
