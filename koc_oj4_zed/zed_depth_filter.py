@@ -16,14 +16,14 @@ class DepthMinFilter(Node):
 
         self.depth_sub = self.create_subscription(
             Image,
-            '/zed/depth/depth_registered',
+            '/zed/zed_node/depth/depth_registered',
             self.depth_callback,
             10
         )
 
         self.conf_sub = self.create_subscription(
             Image,
-            '/zed/confidence/confidence_map',
+            '/zed/zed_node/confidence/confidence_map',
             self.conf_callback,
             10
         )
@@ -55,7 +55,6 @@ class DepthMinFilter(Node):
 
         # Threshold for the minimum depth
         depth_threshold = 0.5
-
         if np.isnan(min_depth):
             self.get_logger().warn("No valid depth values found.")
         elif min_depth < depth_threshold:
